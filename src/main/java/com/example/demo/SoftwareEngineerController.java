@@ -21,17 +21,17 @@ public class SoftwareEngineerController {
     }
 
     @GetMapping("/{id}")
-    public SoftwareEngineer getAnEngineerById(Integer id) {
+    public SoftwareEngineer getAnEngineerById(@PathVariable Integer id) {
         return softwareEngineerService.getEngineerById(id);
     }
 
     @PostMapping
-    public SoftwareEngineer createEngineer(SoftwareEngineer engineer) {
-        return softwareEngineerService.saveEngineer(engineer);
+    public void createEngineer(@RequestBody SoftwareEngineer engineer) {
+        softwareEngineerService.saveEngineer(engineer);
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteAnEngineer(Integer id) {
+    public void deleteAnEngineer(@PathVariable Integer id) {
         softwareEngineerService.deleteEngineer(id);
     }
 }

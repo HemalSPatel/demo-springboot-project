@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,14 +18,18 @@ public class SoftwareEngineerService {
     }
 
     public SoftwareEngineer getEngineerById(Integer id) {
-        return repository.findById(id).orElse(null);
+        return repository.findById(id).orElseThrow(() -> new RuntimeException("Engineer not found"));
     }
 
-    public SoftwareEngineer saveEngineer(SoftwareEngineer engineer) {
-        return repository.save(engineer);
+    @Transactional
+    public void saveEngineer(SoftwareEngineer engineer) {
+        repository.save(engineer);
     }
 
     public void deleteEngineer(Integer id) {
+        if (!repository.existsById(id)) {
+            throw new RuntimeException("Engineer not found");
+        }
         repository.deleteById(id);
     }
 }

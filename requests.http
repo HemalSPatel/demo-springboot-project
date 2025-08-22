@@ -4,3 +4,14 @@ GET http://localhost:8080/hello
 ### GET request to fetch all software engineers
 GET http://localhost:8080/software-engineers/all
 
+### POST request to add a new software engineer (name, array of tech-stack)
+POST http://localhost:8080/software-engineers
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "techStack": ["Java", "Spring Boot", "Docker"]
+}
+
+### GET request to fetch a specific software engineer by ID
+GET http://localhost:8080/software-engineers/1
