@@ -1,2 +1,6 @@
 ### GET request to example server
 GET http://localhost:8080/hello
+
+### GET request to fetch all software engineers
+GET http://localhost:8080/software-engineers/all
+
